@@ -28,10 +28,10 @@ exports.run = (client, message, args) => {
             if (userReply === 'rock') {
                 if (botReply === 'paper') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.paper} covers ${client.emoji.rock}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'spock') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.spock} vaporises ${client.emoji.rock}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'scissors') {
                     client.success(message.channel, 'YOU WON', `\`${client.emoji.rock} crushes ${client.emoji.scissors}\n+10 $$$\``);
                     bal.balance += 10;
@@ -41,11 +41,11 @@ exports.run = (client, message, args) => {
                 }
             } else if (userReply === 'paper') {
                 if (botReply === 'scissors') {
-                    client.error(message.channel, 'YOU LOST', `\`${client.emoji.scissors} cut ${client.emoji.paper}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    client.error(message.channel, 'YOU LOST', `\`${client.emoji.scissors} cuts ${client.emoji.paper}\n-10 $$$\``);
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'lizard') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.lizard} eats ${client.emoji.paper}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'rock') {
                     client.success(message.channel, 'YOU WON', `\`${client.emoji.paper} covers ${client.emoji.rock}\n+10 $$$\``);
                     bal.balance += 10;
@@ -56,12 +56,12 @@ exports.run = (client, message, args) => {
             } else if (userReply === 'scissors') {
                 if (botReply === 'rock') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.rock} crushes ${client.emoji.scissors}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'spock') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.spock} smashes ${client.emoji.scissors}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'paper') {
-                    client.success(message.channel, 'YOU WON', `\`${client.emoji.scissors} cut ${client.emoji.paper}\n+10 $$$\``);
+                    client.success(message.channel, 'YOU WON', `\`${client.emoji.scissors} cuts ${client.emoji.paper}\n+10 $$$\``);
                     bal.balance += 10;
                 } else {
                     client.success(message.channel, 'YOU WON', `\`${client.emoji.scissors} decapitate ${client.emoji.lizard}\n+10 $$$\``);
@@ -70,10 +70,10 @@ exports.run = (client, message, args) => {
             } else if (userReply === 'lizard') {
                 if (botReply === 'rock') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.rock} crushes ${client.emoji.lizard}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'scissors') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.scissors} decapitates ${client.emoji.lizard}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; } else { bal.balance -= 10; }
                 } else if (botReply === 'paper') {
                     client.success(message.channel, 'YOU WON', `\`${client.emoji.lizard} eats ${client.emoji.paper}\n+10 $$$\``);
                     bal.balance += 10;
@@ -84,10 +84,10 @@ exports.run = (client, message, args) => {
             } else if (userReply === 'spock') {
                 if (botReply === 'paper') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.paper} disproves ${client.emoji.spock}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; }
                 } else if (botReply === 'lizard') {
                     client.error(message.channel, 'YOU LOST', `\`${client.emoji.lizard} poisons ${client.emoji.spock}\n-10 $$$\``);
-                    if (bal.balance > 10) { bal.balance -= 10; }
+                    if (bal.balance < 10) { bal.balance = 0; }
                 } else if (botReply === 'rock') {
                     client.success(message.channel, 'YOU WON', `\`${client.emoji.spock} vaporises ${client.emoji.rock}\n+10 $$$\``);
                     bal.balance += 10;
@@ -114,6 +114,6 @@ module.exports.help = {
     name: 'rps',
     category: 'fun',
     description: 'Plays rock paper scissors',
-    usage: 'rps <rock|paper|scissors>',
-    details: '<rock|paper|scissors> => Rock beats Scissors, Scissors beats Paper, Paper beats Rock.'
+    usage: 'rps <rock|paper|scissors|lizard|spock>',
+    details: '<rock|paper|scissors|lizard|spock> => Rock beats Scissors, Scissors beats Paper, Paper beats Rock. Etc...'
 };

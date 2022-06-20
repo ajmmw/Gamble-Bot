@@ -42,7 +42,7 @@ const config = {
             check: (client, message) => {
                 if (message.guild) {
                     const adminRoleObj = message.guild.roles.cache.get(config.adminRole);
-                    if ((adminRoleObj && message.member.roles.cache.has(adminRoleObj.id)) || message.member.hasPermission('ADMINISTRATOR')) { return true; }
+                    if ((adminRoleObj && message.member.roles.cache.has(adminRoleObj.id)) || message.member.permissions.has('ADMINISTRATOR')) { return true; }
                 }
                 return false;
             },

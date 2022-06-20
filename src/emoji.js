@@ -49,5 +49,14 @@ module.exports = {
     paper: '📃',
     scissors: '✂️',
     lizard: '🦎',
-    spock: '🖖🏼'
+    spock: '🖖🏼',
+    diamond: '♦️',
+    lemon: '🍋',
+    melon: '🍉',
+    heart: '❤️',
+    bell: '🔔',
+    mango: '🥭',
+    cherry: '🍒',
+    bomb: '💣',
+
 };

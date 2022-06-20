@@ -7,9 +7,17 @@ exports.run = (client, message, args) => {
             // Display Your Balance
         default:
             if (args.length === 0) {
-                User = client.getBal.get(message.author.id, message.guild.id);
-                if (!User) return;
-                return message.channel.send(`**${message.author.username}'s Balance**\nWallet: \`$${User.balance}\``);
+                bal = client.getBal.get(message.author.id, message.guild.id);
+                if (!bal) {
+                    bal = {
+                        id: `${message.guild.id}-${message.author.id}`,
+                        user: message.author.id,
+                        guild: message.guild.id,
+                        balance: 0
+                    }
+                    client.setBal.run(bal);
+                }
+                return message.channel.send(`**${message.author.username}'s Balance**\nWallet: \`$${bal.balance}\``);
             }
 
             // See Tagged Users Bells

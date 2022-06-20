@@ -12,7 +12,7 @@ module.exports = async(client, message) => {
             id: `${message.guild.id}-${message.author.id}`,
             user: message.author.id,
             guild: message.guild.id,
-            points: 0
+            balance: 0
         }
     }
 
