@@ -5,6 +5,23 @@ module.exports = async(client, message) => {
     if (!message.guild || message.author.bot) return;
     if (!message.channel.permissionsFor(message.guild.me).has(['SEND_MESSAGES', 'EMBED_LINKS'])) return;
 
+    // Set Balance if None
+    let bal = client.getBal.get(message.author.id, message.guild.id);
+    if (!bal) {
+        bal = {
+            id: `${message.guild.id}-${message.author.id}`,
+            user: message.author.id,
+            guild: message.guild.id,
+            points: 0
+        }
+    }
+
+    // Update Balance
+    if (message.content.indexOf(client.config.prefix) !== 0) {
+        bal.balance++;
+        client.setBal.run(bal);
+    }
+
     // Bot is Mentioned
     if (message.mentions.has(client.user)) {
         if (message.mentions.everyone) return;

@@ -10,7 +10,6 @@ const client = new Discord.Client({
         'GUILDS',
         'GUILD_MEMBERS',
         'GUILD_BANS',
-        'GUILD_VOICE_STATES',
         'GUILD_PRESENCES',
         'GUILD_MESSAGES',
         'GUILD_MESSAGE_REACTIONS',
@@ -20,12 +19,21 @@ const client = new Discord.Client({
 });
 
 // Get Config File
-config = require('./config');
+client.config = require('./config');
 client.emoji = require('./src/emoji');
 
-// Commands Load
 const fs = require('fs');
 const Enmap = require('enmap');
+
+// Modules Load
+fs.readdir('./src/modules/', (err, files) => {
+    if (err) { return console.error(err); }
+    files.forEach((file) => {
+        require(`./src/modules/${file}`)(client);
+    });
+});
+
+// Events Load
 fs.readdir('./events/', (err, files) => {
     if (err) return console.error(err);
     files.forEach((file) => {
@@ -35,6 +43,7 @@ fs.readdir('./events/', (err, files) => {
     });
 });
 
+// Commands Load
 client.commands = new Enmap();
 client.aliases = new Enmap();
 
@@ -61,8 +70,8 @@ fs.readdir('./commands/', (err, folders) => {
 });
 
 client.levelCache = {};
-for (let i = 0; i < config.permLevels.length; i++) {
-    const thislvl = config.permLevels[i];
+for (let i = 0; i < client.config.permLevels.length; i++) {
+    const thislvl = client.config.permLevels[i];
     client.levelCache[thislvl.name] = thislvl.level;
 }
 

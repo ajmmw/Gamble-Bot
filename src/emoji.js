@@ -42,14 +42,12 @@ module.exports = {
     '?': '❓',
     '8ball': '🎱',
     checkMark: '✅',
-    dnd: '🔕',
-    idle: '🌙',
-    offline: '⚫',
-    online: '🟢',
     redX: '❌',
     warning: '⚠',
-    gameDie: '🎲',
-    thumbsUp: '👍',
-    thumbsDown: '👎',
-    neutral: '↔️',
-  };
+    dice: '🎲',
+    rock: '🪨',
+    paper: '📃',
+    scissors: '✂️',
+    lizard: '🦎',
+    spock: '🖖🏼'
+};
