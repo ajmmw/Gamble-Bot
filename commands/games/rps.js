@@ -99,7 +99,7 @@ exports.run = (client, message, args) => {
             return client.setBal.run(bal);
 
         default:
-            return client.error(message.channel, 'ERROR', `<@${message.author.id}> please pick either \`rock | paper | scissors\``);
+            return client.error(message.channel, 'ERROR', `<@${message.author.id}> please pick either \`rock | paper | scissors | lizard | spock\``);
     }
 };
 

@@ -4,8 +4,6 @@ const Discord = require('discord.js');
 exports.run = (client, message, args) => {
     fetch(`https://api.adviceslip.com/advice`)
         .then(res => res.json()).then(body => {
-            embed = new Discord.MessageEmbed()
-                .setImage(body.slip.image_original_url)
             return message.channel.send(`**ADVICE #${body.slip.id}**\n\`${body.slip.advice}\``);
         })
 };
